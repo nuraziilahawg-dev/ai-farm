@@ -1,4 +1,4 @@
-import { useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { useState } from "react";
 
 // ── Colours extracted from the dashboard screenshot ──────────────────────────
@@ -10,18 +10,18 @@ import { useState } from "react";
 // Text muted:   #7a7060
 
 export default function LoginPage() {
-  const [email, setEmail]       = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPass, setShowPass] = useState(false);
-  const [loading, setLoading]   = useState(false);
-  const [error, setError]       = useState("")
-  const navigate                = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("")
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
     if (email === "admin@aifarm.com" && password === "admin123") {
       localStorage.setItem("aifarm-auth", "true");
-      navigate ("/dashboard");
+      navigate("/dashboard");
     } else {
       setError("Invalid email or password");
     }
@@ -42,10 +42,10 @@ export default function LoginPage() {
 
         <div style={styles.leftContent}>
           {/* Logo - click to return to landing page */}
-          <div 
-          style={{ ...styles.logo, cursor: "pointer"}}
-          onClick={() => navigate("/")}
-          title="Back to Home"
+          <div
+            style={{ ...styles.logo, cursor: "pointer" }}
+            onClick={() => navigate("/")}
+            title="Back to Home"
           >
             <span style={styles.logoIcon}>🌱</span>
             <span style={styles.logoText}>Ai Farm</span>
@@ -59,15 +59,15 @@ export default function LoginPage() {
               <span style={styles.heroAccent}>Starts Here</span>
             </h1>
             <p style={styles.heroSub}>
-              Monitor your crops, soil health, and harvest intelligence — all in one place.
+              Monitor your crops, soil health, and get personalized treatment recommendations<br></br>— all in one place.
             </p>
           </div>
 
           {/* Stats strip */}
           <div style={styles.statsRow}>
             {[
-              { value: "6",    label: "Active Batches" },
-              { value: "98%",  label: "Detection Rate" },
+              { value: "6", label: "Active Batches" },
+              { value: "98%", label: "Detection Rate" },
               { value: "24/7", label: "IoT Monitoring" },
             ].map((s) => (
               <div key={s.label} style={styles.statItem}>
@@ -90,7 +90,7 @@ export default function LoginPage() {
         <div style={styles.formCard}>
 
           {/* Breadcrumb */}
-          <p style={styles.breadcrumb}>FarmSense AI &rsaquo; <strong>Sign In</strong></p>
+          <p style={styles.breadcrumb}>AI Farm &rsaquo; <strong>Sign In</strong></p>
 
           <h2 style={styles.formTitle}>Welcome back</h2>
           <p style={styles.formSub}>Sign in to your farm dashboard</p>
@@ -99,12 +99,14 @@ export default function LoginPage() {
 
             {/* Email */}
             <div style={styles.fieldGroup}>
-              <label style={styles.label}>Email address</label>
+              <div style={styles.labelRow}>
+                <label style={styles.label}>Email address</label>
+              </div>
               <div style={styles.inputWrap}>
                 <span style={styles.inputIcon}>✉️</span>
                 <input
                   type="email"
-                  placeholder="farmer@aifarm.com"
+                  placeholder="admin@aifarm.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   style={styles.input}
@@ -174,14 +176,14 @@ export default function LoginPage() {
           </form>
 
           {/* Divider */}
-          <div style={styles.divider}>
+          {/* <div style={styles.divider}>
             <span style={styles.dividerLine} />
             <span style={styles.dividerText}>or continue with</span>
             <span style={styles.dividerLine} />
-          </div>
+          </div> */}
 
           {/* SSO */}
-          <div style={styles.ssoRow}>
+          {/* <div style={styles.ssoRow}>
             {[
               { icon: "🏢", label: "Microsoft" },
               { icon: "🔑", label: "SSO" },
@@ -190,19 +192,19 @@ export default function LoginPage() {
                 <span>{p.icon}</span> {p.label}
               </button>
             ))}
-          </div>
+          </div> */}
 
           {/* Footer */}
-          <p style={styles.footerNote}>
+          {/* <p style={styles.footerNote}>
             Don't have an account?{" "}
             <a href="#" style={styles.footerLink}>Request access</a>
-          </p>
+          </p> */}
 
         </div>
 
         {/* Bottom credit */}
         <p style={styles.demoHint}>Demo credentials: admin@aifarm.com / admin123</p>
-        <p style={styles.credit}>© 2026 Ai Farm · Kota Kinabalu · All rights reserved</p>
+        <p style={styles.credit}>© 2026 Ai Farm · All rights reserved</p>
       </div>
     </div>
   );
@@ -211,15 +213,15 @@ export default function LoginPage() {
 // ── Styles ────────────────────────────────────────────────────────────────────
 
 const C = {
-  sidebarBg:  "#1c1f16",
-  contentBg:  "#f0ece4",
-  cardBg:     "#faf7f2",
-  gold:       "#c8973a",
-  green:      "#4a7c59",
-  textDark:   "#1c1f16",
-  textMuted:  "#7a7060",
-  border:     "#ddd8ce",
-  inputBg:    "#f0ece4",
+  sidebarBg: "#1c1f16",
+  contentBg: "#f0ece4",
+  cardBg: "#faf7f2",
+  gold: "#c8973a",
+  green: "#4a7c59",
+  textDark: "#1c1f16",
+  textMuted: "#7a7060",
+  border: "#ddd8ce",
+  inputBg: "#f0ece4",
 };
 
 const styles = {
@@ -536,7 +538,7 @@ const styles = {
     marginTop: "1.25rem",
     margin: "1.25rem 0 0",
   },
-    demoHint: {
+  demoHint: {
     fontSize: "0.75rem",
     color: C.textMuted,
     textAlign: "center",

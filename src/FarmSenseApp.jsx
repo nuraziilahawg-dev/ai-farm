@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import "./farmsense.css";
 
 // ═══════════════════════════════════════════════
@@ -174,7 +175,7 @@ function Topbar({ page }) {
   return (
     <div className="fs-topbar">
       <div className="fs-topbar__breadcrumb">
-        <span className="fs-topbar__parent">FarmSense AI</span>
+        <span className="fs-topbar__parent">AI Farm</span>
         <span className="fs-topbar__sep">›</span>
         <span className="fs-topbar__current">{page}</span>
       </div>
@@ -811,6 +812,12 @@ export default function FarmSenseApp() {
     return acc;
   }, {});
 
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("aifarm-auth");
+    navigate("/login");
+  };
+
   const PAGE_COMPONENTS = {
     "Dashboard": <DashboardPage />,
     "Atmosphere": <AtmospherePage />,
@@ -854,6 +861,16 @@ export default function FarmSenseApp() {
             </div>
           ))}
         </nav>
+        <div>
+          <button
+            className="fs-nav-item fs-sidebar__logout"
+            onClick={handleLogout}
+            title="Logout"
+          >
+            <span className="fs-nav-item__icon">🚪</span>
+            <span className="fs-nav-item__label">Logout</span>
+          </button>
+        </div>
         <div className="fs-sidebar__footer">
           <div className="fs-sidebar__avatar">JD</div>
           <div>
